@@ -1,0 +1,89 @@
+const koneksi = require('../config/database');
+const validasi = require('../libs/title-validation');
+const fungsi = require('../libs/functions');
+
+exports.index = function (response, statement, renderURL) {
+    koneksi.query(statement, (err, rows, fields) => {
+        if (err) throw err;
+        response.render(renderURL, {
+            title: 'News-App',
+            headline: 'Berita terbaru',
+            data: rows
+        });
+    });
+}
+
+exports.view = function (response, sql, renderURL, renderErrorsURL, slug) {
+    koneksi.query(sql, slug, (err, rows, field) => {
+        if (err) throw err;
+        if (rows.length) {
+            var teks = rows[0].text;
+            var judul = rows[0].title;
+            var penulis = rows[0].penulis;
+            var tanggal = rows[0].tanggal;
+            var dateSend = fungsi.tanggalIndo(tanggal);
+
+            response.render(renderURL, {
+                title: judul,
+                text: teks,
+                date: dateSend,
+                writer: penulis,
+                headline: 'Lihat berita'
+            });
+        } else {
+            response.render(renderErrorsURL, {
+                title: "Error Pages",
+                message: "404 - The Page can't be found"
+            });
+        }
+    });
+}
+
+exports.createView = function (response, date, renderURL) {
+    response.render(renderURL, {
+        title: 'Posting Berita',
+        headline: 'Buat berita baru',
+        date: date
+    });
+}
+
+exports.insert = function (response, statement1, title, statement2, data) {
+    validasi.titleCreate(statement1, title, statement2, data, response);
+}
+
+exports.delete = function (response, sql, id) {
+    koneksi.query(sql, id, (err, rows, field) => {
+        if (err) throw err;
+        console.log(rows.affectedRows + " data deleted!");
+        response.redirect('/');
+    });
+}
+
+exports.editView = function (response, sql, slug) {
+    koneksi.query(sql, slug, (err, rows, field) => {
+        if (err) throw err;
+        if (rows.length) {
+            response.render('news/edit', {
+                title: 'Edit berita',
+                data: rows
+            });
+        } else {
+            response.render('errors/404', {
+                title: "Error Pages",
+                message: "404 - The Page can't be found"
+            });
+        }
+    });
+}
+
+exports.editFunction = function (response, statement1, statement2, title, sendSlug, id, data) {
+    var dataSend = [data, id];
+    validasi.titleUpdate(statement1, title, statement2, dataSend, response, sendSlug);
+}
+
+exports.errorPageHandling = function (response, renderURL) {
+    response.render(renderURL, {
+        title: "Error Pages",
+        message: "404 - The Page can't be found"
+    });
+}

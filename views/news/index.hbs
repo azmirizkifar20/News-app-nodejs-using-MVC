@@ -1,0 +1,33 @@
+{{! Index page }}
+<div class="alert alert-light" style="margin-bottom: 0px">
+    <h1 class="text-center">{{ headline }}</h1>
+</div>
+
+{{#each data}}
+<div class="row" style="margin: 0;">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+        <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">{{ title }}</h4>
+            <p>{{ text }}</p>
+            <hr>
+            <a class="btn btn-success" href="/view/{{ slug }}"><i class="far fa-eye"></i></a>
+            <a class="btn btn-primary" href="/edit/{{ slug }}"><i class="fas fa-edit"></i></a>
+            <a class="btn btn-danger" href="/delete/{{ id }}"
+                onclick="return confirm('Yakin ingin menghapus berita?')"><i class="fas fa-trash-alt"></i></a>
+            <p class="float-right text-secondary">{{ penulis }}</p>
+        </div>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+{{/each}}
+
+<div class="row" style="margin: 0;">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+        <a class="btn btn-info form-control" href="/create" style="font-size: 14pt;">Buat artikel</a>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+
+<p class="text-center mt-3"><em>&copy; 2019 tronjal tronjol maha ASYIK</em></p>

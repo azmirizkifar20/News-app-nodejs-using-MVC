@@ -1,0 +1,28 @@
+{{! create news page }}
+<div class="alert alert-light" style="margin-bottom: 0px">
+    <h1 class="text-center">{{ headline }}</h1>
+</div>
+
+<form action="/posting" method="post">
+    <div class="row" style="margin: 0;">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <input type="date" name="tanggal" value="{{ date }}" hidden>
+            <div class="form-group">
+                <div class="form-group">
+                    <label>Writer</label>
+                    <input type="text" class="form-control" name="penulis" placeholder="Nama penulis" required>
+                </div>
+                <label>Title</label>
+                <input type="text" class="form-control" name="title" placeholder="Masukkan judul" required>
+            </div>
+            <div class="form-group">
+                <label>Text</label>
+                <textarea class="form-control" name="text" placeholder="Masukkan teks" required></textarea>
+            </div>
+            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+            <a href="/" class="btn btn-secondary">Kembali</a>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</form>
