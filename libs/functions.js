@@ -7,3 +7,9 @@ exports.tanggalIndo = function (tanggal) {
     var kirim = split[2] + ' ' + arrbulan[bulan] + ' ' + split[0];
     return kirim;
 }
+
+exports.slugConvert = function (title) {
+    var titleKecil = title.toLowerCase();
+    var slug = titleKecil.split(' ').join('-');
+    return slug;
+}

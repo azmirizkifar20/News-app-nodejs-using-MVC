@@ -1,6 +1,6 @@
 const koneksi = require('../config/database');
 const validasi = require('../libs/title-validation');
-const fungsi = require('../libs/functions');
+const helpers = require('../libs/functions');
 
 exports.index = function (response, statement, renderURL) {
     koneksi.query(statement, (err, rows, fields) => {
@@ -21,7 +21,7 @@ exports.view = function (response, sql, renderURL, renderErrorsURL, slug) {
             var judul = rows[0].title;
             var penulis = rows[0].penulis;
             var tanggal = rows[0].tanggal;
-            var dateSend = fungsi.tanggalIndo(tanggal);
+            var dateSend = helpers.tanggalIndo(tanggal);
 
             response.render(renderURL, {
                 title: judul,

@@ -1,5 +1,6 @@
 const moment = require('moment');
 const model = require('../models/news-model');
+const helpers = require('../libs/functions');
 var sendSlug;
 
 // halaman index
@@ -28,8 +29,7 @@ exports.insert = function (req, res) {
     var title = req.body.title;
     var text = req.body.text;
     var writer = req.body.penulis;
-    var titleKecil = title.toLowerCase();
-    var slug = titleKecil.split(' ').join('-');
+    var slug = helpers.slugConvert(title);
     var sql1 = 'SELECT * FROM news WHERE title = ?';
     var sql2 = 'INSERT INTO news SET ?';
 
@@ -61,8 +61,7 @@ exports.edit = function (req, res) {
 exports.update = function (req, res) {
     var id = req.body.id;
     var title = req.body.title;
-    var lowerConvert = title.toLowerCase();
-    var slug = lowerConvert.split(' ').join('-');
+    var slug = helpers.slugConvert(title);
     var sql1 = 'SELECT * FROM news WHERE title = ?';
     var sql2 = 'UPDATE news SET ? WHERE id = ?';
 
