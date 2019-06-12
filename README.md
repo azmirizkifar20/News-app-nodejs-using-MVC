@@ -1,7 +1,7 @@
 # News-app-nodejs-using-MVC
 News-app nodejs using MVC pattern with expressjs
 
-Installed modules :
+<h2>Installed modules :</h2>
 <ul>
   <li>Express</li>
   <li>MySQL</li>
