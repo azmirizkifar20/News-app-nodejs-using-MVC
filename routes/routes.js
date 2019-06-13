@@ -1,4 +1,5 @@
 const controller = require('../controllers/controller');
+const api = require('../controllers/restful-api');
 const express = require('express');
 const router = express.Router();
 
@@ -22,6 +23,15 @@ router.get('/edit/:slug', controller.edit);
 
 // fungsi update
 router.post('/update', controller.update);
+
+// respone show data news on api
+router.get('/api/data', api.showNews);
+
+// respone show user on api
+router.get('/api/users', api.showUSers);
+
+// insert articles api
+router.post('/api/insert', api.insertNews);
 
 // 404 page handling
 router.get('*', controller.errorPage);
