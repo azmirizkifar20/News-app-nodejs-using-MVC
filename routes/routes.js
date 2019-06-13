@@ -1,5 +1,6 @@
-const controller = require('../controllers/controller');
 const api = require('../controllers/restful-api');
+const controller = require('../controllers/controller');
+const authentication = require('../controllers/authentication');
 const express = require('express');
 const router = express.Router();
 
@@ -23,6 +24,12 @@ router.get('/edit/:slug', controller.edit);
 
 // fungsi update
 router.post('/update', controller.update);
+
+// routing register
+router.get('/register', authentication.showRegister);
+
+// authenticate register
+router.post('/auth-register', authentication.register);
 
 // (API) show data news  
 router.get('/api/data', api.showNews);

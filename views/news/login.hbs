@@ -1,0 +1,13 @@
+{{! Login }}
+{{#extend "stylesheets"}}
+<link rel="stylesheet" href="/assets/css/login-register.css">
+{{/extend}}
+
+<div class="login-form">
+    <h1>Login to News-app</h1>
+    <form action="/auth-login" method="POST">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+</div>

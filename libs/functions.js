@@ -16,3 +16,12 @@ exports.slugConvert = function (title) {
 
     return slug;
 }
+
+// fungsi show alert
+exports.showAlert = function (response, message, url) {
+    console.log("Password confirmation is not match!");
+    var alert = "<script>alert('" + message + "');";
+    alert += "document.location.href = '" + url + "'</script>";
+    console.log(alert);
+    response.end(alert);
+}

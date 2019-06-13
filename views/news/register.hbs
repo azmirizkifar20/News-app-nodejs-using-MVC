@@ -1,0 +1,14 @@
+{{! Register }}
+{{#extend "stylesheets"}}
+<link rel="stylesheet" href="/assets/css/login-register.css">
+{{/extend}}
+
+<div class="login-form">
+    <h1>Register to News-app</h1>
+    <form action="/auth-register" method="POST">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" name="passwordConfirm" placeholder="Password Confirm" required>
+        <button type="submit">Register</button>
+    </form>
+</div>
