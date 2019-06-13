@@ -24,5 +24,4 @@ exports.insertNews = function (req, res) {
         penulis: req.body.penulis,
         tanggal: req.body.tanggal
     });
-
 }
