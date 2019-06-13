@@ -24,14 +24,20 @@ router.get('/edit/:slug', controller.edit);
 // fungsi update
 router.post('/update', controller.update);
 
-// respone show data news on api
+// (API) show data news  
 router.get('/api/data', api.showNews);
 
-// respone show user on api
+// (API) show user  
 router.get('/api/users', api.showUSers);
 
-// insert articles api
-router.post('/api/insert', api.insertNews);
+// (API) insert articles 
+router.post('/api', api.insertNews);
+
+// (API) update articles 
+router.put('/api', api.updateNews);
+
+// (API) delete articles 
+router.delete('/api', api.deleteNews);
 
 // 404 page handling
 router.get('*', controller.errorPage);
