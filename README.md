@@ -16,4 +16,9 @@ News-app nodejs using MVC pattern with expressjs
   <li>title validation on create article and update</li>
 </ul>
 
+<h2>Updated</h2>
+<ul>
+  <li>Adding restful API</li>
+</ul>
+
 <h2>hope it useful!</h2>
