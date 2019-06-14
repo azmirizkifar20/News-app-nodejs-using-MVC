@@ -19,9 +19,8 @@ exports.slugConvert = function (title) {
 
 // fungsi show alert
 exports.showAlert = function (response, message, url) {
-    console.log("Password confirmation is not match!");
+    console.log(message);
     var alert = "<script>alert('" + message + "');";
     alert += "document.location.href = '" + url + "'</script>";
-    console.log(alert);
     response.end(alert);
 }

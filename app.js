@@ -2,7 +2,6 @@ require('./libs/handlebars-helpers');
 const path = require('path');
 const moment = require('moment');
 const express = require('express');
-const favicon = require('serve-favicon');
 const routes = require('./routes/routes');
 const bodyParser = require('body-parser');
 const app = express();
@@ -14,9 +13,6 @@ app.set('view engine', 'hbs');
 // set body-parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-// set favicon
-app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')));
 
 // set public folder as assets
 app.use('/assets', express.static(__dirname + '/public'));

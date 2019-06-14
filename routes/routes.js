@@ -4,8 +4,11 @@ const authentication = require('../controllers/authentication');
 const express = require('express');
 const router = express.Router();
 
+// router redirect
+router.get('/', controller.redirect);
+
 // routing index
-router.get('/', controller.index);
+router.get('/index', controller.index);
 
 // routing view
 router.get('/view/:slug', controller.view);
@@ -28,8 +31,14 @@ router.post('/update', controller.update);
 // routing register
 router.get('/register', authentication.showRegister);
 
+// routing login
+router.get('/login', authentication.showLogin);
+
 // authenticate register
 router.post('/auth-register', authentication.register);
+
+// authenticate login
+router.post('/auth-login', authentication.login);
 
 // (API) show data news  
 router.get('/api/data', api.showNews);

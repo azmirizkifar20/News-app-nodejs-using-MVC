@@ -55,7 +55,7 @@ exports.delete = function (response, sql, id) {
     koneksi.query(sql, id, (err, rows, field) => {
         if (err) throw err;
         console.log(rows.affectedRows + " data deleted!");
-        response.redirect('/');
+        response.redirect('/index');
     });
 }
 

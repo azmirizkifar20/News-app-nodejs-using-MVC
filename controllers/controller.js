@@ -3,6 +3,11 @@ const model = require('../models/news-model');
 const helpers = require('../libs/functions');
 var sendSlug;
 
+// redirect to login
+exports.redirect = function (req, res) {
+    res.redirect('/login');
+}
+
 // halaman index
 exports.index = function (req, res) {
     model.index(res, 'SELECT * FROM news', 'news/index');

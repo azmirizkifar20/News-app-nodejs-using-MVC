@@ -12,7 +12,7 @@ exports.titleCreate = function (statement1, title, statement2, data, response) {
             koneksi.query(statement2, data, (err, rows, field) => {
                 if (err) throw err;
                 console.log(rows.affectedRows + " data created!");
-                response.redirect('/');
+                response.redirect('/index');
             });
         }
     });
@@ -30,7 +30,7 @@ exports.titleUpdate = function (statement1, title, statement2, data, response, s
             koneksi.query(statement2, data, (err, rows, field) => {
                 if (err) throw err;
                 console.log(rows.affectedRows + " data updated!");
-                response.redirect('/');
+                response.redirect('/index');
             });
         }
     });
