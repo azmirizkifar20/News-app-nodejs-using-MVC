@@ -19,6 +19,7 @@ News-app nodejs using MVC pattern with expressjs
 <h2>Updated</h2>
 <ul>
   <li>Adding restful API</li>
+  <li>Adding authencate system for login and register</li>
 </ul>
 
 <h2>hope it useful!</h2>
