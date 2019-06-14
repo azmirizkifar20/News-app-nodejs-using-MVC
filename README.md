@@ -19,11 +19,11 @@ News-app nodejs using MVC pattern with expressjs
 
 <h2>Check the API using postman</h2>
 <ul>
-  <li>Show users (GET) : http://localhost:3000/api/users</li>
-  <li>Show articles (GET) : http://localhost:3000/api/data</li>
-  <li>Insert articles (POST) : http://localhost:3000/api</li>
-  <li>Update articles (PUT) : http://localhost:3000/api</li>
-  <li>Delete articles (DELETE) : http://localhost:3000/api</li>
+  <li>Show users (GET) : <a href="http://localhost:3000/api/users">http://localhost:3000/api/users</a></li>
+  <li>Show articles (GET) : <a href="http://localhost:3000/api/data">http://localhost:3000/api/data</a></li>
+  <li>Insert articles (POST) : <a href="http://localhost:3000/api">http://localhost:3000/api</a></li>
+  <li>Update articles (PUT) : <a href="http://localhost:3000/api">http://localhost:3000/api</a></li>
+  <li>Delete articles (DELETE) : <a href="http://localhost:3000/api">http://localhost:3000/api</a></li>
 </ul>
 
 <h2>Updated</h2>
