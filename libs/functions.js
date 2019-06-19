@@ -24,3 +24,11 @@ exports.showAlert = function (response, message, url) {
     alert += "document.location.href = '" + url + "'</script>";
     response.end(alert);
 }
+
+// fungsi show alert optional
+exports.showAlertOptional = function (response, message, url, optional) {
+    console.log(message);
+    var alert = "<script>alert('" + message + "');";
+    alert += "document.location.href = '" + url + optional + "'</script>";
+    response.end(alert);
+}

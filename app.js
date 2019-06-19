@@ -2,6 +2,9 @@ require('./libs/handlebars-helpers');
 const path = require('path');
 const moment = require('moment');
 const express = require('express');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const morgan = require('morgan');
 const routes = require('./routes/routes');
 const bodyParser = require('body-parser');
 const app = express();
@@ -9,6 +12,16 @@ const app = express();
 // set view dan view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+// set cookies and session
+app.use(morgan('dev'));
+app.use(cookieParser());
+app.use(session({
+    key: 'user_sid',
+    secret: 'somerandonstuffs',
+    saveUninitialized: false,
+    resave: false
+}));
 
 // set body-parser
 app.use(bodyParser.json());

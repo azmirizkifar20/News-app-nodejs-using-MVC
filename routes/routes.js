@@ -34,6 +34,9 @@ router.get('/register', authentication.showRegister);
 // routing login
 router.get('/login', authentication.showLogin);
 
+// routing logout
+router.get('/logout', authentication.logout);
+
 // authenticate register
 router.post('/auth-register', authentication.register);
 

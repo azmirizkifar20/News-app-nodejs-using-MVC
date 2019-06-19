@@ -1,17 +1,22 @@
-const koneksi = require('../config/database');
 const helpers = require('../libs/functions');
 const validasi = require('../models/validation');
-const Crypter = require('cryptr');
-const crypter = new Crypter('myTotalySecretKey');
 
 // show register form
 exports.showRegister = function (req, res) {
-    validasi.viewPage(res, 'news/register', 'Register to News-app');
+    if (!req.session.username) {
+        validasi.viewPage(res, 'news/register', 'Register to News-app');
+    } else {
+        res.redirect('/index');
+    }
 }
 
 //show login form
 exports.showLogin = function (req, res) {
-    validasi.viewPage(res, 'news/login', 'Login to News-app');
+    if (!req.session.username) {
+        validasi.viewPage(res, 'news/login', 'Login to News-app');
+    } else {
+        res.redirect('/index');
+    }
 }
 
 // register authentication
@@ -35,23 +40,16 @@ exports.register = function (req, res) {
 }
 
 // login authentication
-// no session and cookies, on process
+// no cookies, on process
 exports.login = function (req, res) {
     var username = req.body.username;
     var password = req.body.password;
     var sql = 'SELECT * FROM users WHERE username = ?';
+    validasi.login(req, res, sql, username, password);
+}
 
-    koneksi.query(sql, [username], (err, rows, field) => {
-        if (err) throw err;
-
-        if (rows.length > 0) {
-            decryptedPassword = crypter.decrypt(rows[0].password);
-            if (password !== decryptedPassword) {
-                helpers.showAlert(res, 'Username or password incorrect!', '/login');
-                return false;
-            } else {
-                helpers.showAlert(res, 'Login successfully!', '/index');
-            }
-        }
-    });
+// logout
+exports.logout = function (req, res) {
+    req.session.destroy();
+    res.redirect('/login');
 }

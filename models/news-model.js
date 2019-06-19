@@ -1,7 +1,7 @@
 const koneksi = require('../config/database');
-const validasi = require('../libs/title-validation');
 const helpers = require('../libs/functions');
 
+// halaman index
 exports.index = function (response, statement, renderURL) {
     koneksi.query(statement, (err, rows, fields) => {
         if (err) throw err;
@@ -13,6 +13,7 @@ exports.index = function (response, statement, renderURL) {
     });
 }
 
+// view article
 exports.view = function (response, sql, renderURL, renderErrorsURL, slug) {
     koneksi.query(sql, slug, (err, rows, field) => {
         if (err) throw err;
@@ -39,6 +40,7 @@ exports.view = function (response, sql, renderURL, renderErrorsURL, slug) {
     });
 }
 
+// create article
 exports.createView = function (response, date, renderURL) {
     response.render(renderURL, {
         title: 'Posting Berita',
@@ -47,10 +49,24 @@ exports.createView = function (response, date, renderURL) {
     });
 }
 
+// insert function
 exports.insert = function (response, statement1, title, statement2, data) {
-    validasi.titleCreate(statement1, title, statement2, data, response);
+    koneksi.query(statement1, title, (err, rows, field) => {
+        if (err) throw err;
+        if (rows.length) {
+            helpers.showAlert(response, 'Judul yang anda masukkan sudah ada!', '/create');
+        } else {
+            koneksi.query(statement2, data, (err, rows, field) => {
+                if (err) throw err;
+
+                console.log(rows.affectedRows + " data created!");
+                response.redirect('/index');
+            });
+        }
+    });
 }
 
+// delete article
 exports.delete = function (response, sql, id) {
     koneksi.query(sql, id, (err, rows, field) => {
         if (err) throw err;
@@ -59,6 +75,7 @@ exports.delete = function (response, sql, id) {
     });
 }
 
+// edit article
 exports.editView = function (response, sql, slug) {
     koneksi.query(sql, slug, (err, rows, field) => {
         if (err) throw err;
@@ -76,11 +93,25 @@ exports.editView = function (response, sql, slug) {
     });
 }
 
+// update function
 exports.editFunction = function (response, statement1, statement2, title, sendSlug, id, data) {
     var dataSend = [data, id];
-    validasi.titleUpdate(statement1, title, statement2, dataSend, response, sendSlug);
+    koneksi.query(statement1, title, (err, rows, field) => {
+        if (err) throw err;
+        if (rows.length) {
+            helpers.showAlertOptional(response, 'Judul yang anda ubah sudah ada sebelumnya!', '/edit/', sendSlug);
+        } else {
+            koneksi.query(statement2, dataSend, (err, rows, field) => {
+                if (err) throw err;
+
+                console.log(rows.affectedRows + " data updated!");
+                response.redirect('/index');
+            });
+        }
+    });
 }
 
+// error page handling
 exports.errorPageHandling = function (response, renderURL) {
     response.render(renderURL, {
         title: "Error Pages",

@@ -10,23 +10,34 @@ exports.redirect = function (req, res) {
 
 // halaman index
 exports.index = function (req, res) {
-    model.index(res, 'SELECT * FROM news', 'news/index');
+    if (req.session.username) {
+        model.index(res, 'SELECT * FROM news', 'news/index');
+    } else {
+        res.redirect('/');
+    }
 }
 
 // view artikel
 exports.view = function (req, res) {
-    var url = 'news/view';
-    var errorsUrl = 'errors/404';
-
-    model.view(res, 'SELECT * FROM news WHERE ?', url, errorsUrl, {
-        slug: req.params.slug
-    });
+    if (req.session.username) {
+        var url = 'news/view';
+        var errorsUrl = 'errors/404';
+        model.view(res, 'SELECT * FROM news WHERE ?', url, errorsUrl, {
+            slug: req.params.slug
+        });
+    } else {
+        res.redirect('/');
+    }
 }
 
 // buat artikel
 exports.createView = function (req, res) {
-    var date = moment().format('YYYY-MM-DD');
-    model.createView(res, date, 'news/create');
+    if (req.session.username) {
+        var date = moment().format('YYYY-MM-DD');
+        model.createView(res, date, 'news/create');
+    } else {
+        res.redirect('/');
+    }
 }
 
 // fungsi insert
@@ -56,10 +67,14 @@ exports.delete = function (req, res) {
 
 // edit artikel
 exports.edit = function (req, res) {
-    model.editView(res, 'SELECT * FROM news WHERE ?', {
-        slug: req.params.slug
-    });
-    sendSlug = req.params.slug;
+    if (req.session.username) {
+        model.editView(res, 'SELECT * FROM news WHERE ?', {
+            slug: req.params.slug
+        });
+        sendSlug = req.params.slug;
+    } else {
+        res.redirect('/');
+    }
 }
 
 // fungsi update
