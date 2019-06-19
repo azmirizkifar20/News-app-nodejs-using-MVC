@@ -6,9 +6,12 @@ News-app nodejs using MVC pattern with expressjs
   <li>Express</li>
   <li>MySQL</li>
   <li>Moment</li>
+  <li>Morgan</li>
   <li>Crypter</li>
-  <li>body-parser</li>
-  <li>handlebars</li>
+  <li>Handlebars</li>
+  <li>Body-parser</li>
+  <li>Cookie-parser</li>
+  <li>Express-session</li>
 </ul>
 
 <h2>Fixed some bugs</h2>
@@ -29,7 +32,7 @@ News-app nodejs using MVC pattern with expressjs
 <h2>Updated</h2>
 <ul>
   <li>Adding restful API</li>
-  <li>Adding authencate system for login and register</li>
+  <li>Adding authenticate system for login and register</li>
 </ul>
 
 <h2>hope it useful!</h2>
