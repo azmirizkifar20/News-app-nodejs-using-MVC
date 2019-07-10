@@ -1,5 +1,7 @@
 const helpers = require('../libs/functions');
 const validasi = require('../models/validation');
+const Crypter = require('cryptr');
+const crypter = new Crypter('myTotalySecretKey');
 
 // show register form
 exports.showRegister = function (req, res) {

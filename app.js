@@ -8,6 +8,7 @@ const morgan = require('morgan');
 const routes = require('./routes/routes');
 const bodyParser = require('body-parser');
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 // set view dan view engine
 app.set('views', path.join(__dirname, 'views'));
@@ -34,8 +35,8 @@ app.use('/assets', express.static(__dirname + '/public'));
 app.use('/', routes);
 
 // buat server
-app.listen(3000, () => {
-    console.log('Server running at port 3000');
+app.listen(PORT, () => {
+    console.log('Server running at port ' + PORT);
 });
 
 var date = moment().format('YYYY-MM-DD');
