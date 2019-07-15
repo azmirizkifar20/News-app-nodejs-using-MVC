@@ -72,7 +72,7 @@ exports.delete = function (statement, id, res) {
         } else {
             var values = 'No articles with id = ' + id;
             response.api(values, 'Error', res);
-            console.log('(API) successfully delete the articles');
+            console.log('(API) Failed delete the articles');
         }
     });
 } 
